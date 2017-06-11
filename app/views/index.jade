@@ -1,0 +1,277 @@
+extends layout
+
+block content
+  
+  #mySidenav.sidenav
+    a.closebtn(href='javascript:void(0)' onclick='closeNav()')
+     p X 
+    a(href="#")
+     p Home
+    a(href="#")
+     p About
+    a(href="#")
+     p Contact
+    
+  .mobile-navbar
+    .menuBackground
+      i.fa.fa-bars(onclick='openNav()')
+    .logoContainer
+      img.resoltz-top-logo(src="img/resoltz_new_mark.png")
+
+  .trainer-carousel.smallScreenButtons
+    .buttons
+      a.btn.arrow-left(onclick='plusDivs(-1)')
+        i.fa.fa-arrow-left(aria-hidden='true')
+      a.btn.arrow-right(onclick='plusDivs(1)')
+        i.fa.fa-arrow-right(aria-hidden='true')
+    for post in posts
+      .mobileScreen
+        .snapshot
+          .update
+            .image-container
+              img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+            .trainer-text
+              h1 Week 1 Day 1
+              p It was tough but I made it.
+            .summaryPost-readmore
+              .trainer-icon-read-me(href='https://resoltz.com/domination')
+                img.trainer-icon(src="img/resoltz_new_mark.png")
+                span.read-more Read More
+        .snapshot
+          .update
+            .image-container
+              img.trainer-profile-pic(src="/img/coupleWallSquat.jpg")
+            .trainer-text
+              h1 Week 1 Day 2
+              p Glad I had help from my bae
+            .trainer-icon-read-me(href='https://resoltz.com/domination')
+              img.trainer-icon(src="img/resoltz_new_mark.png")
+              span.read-more Read More
+        .snapshot
+          .update
+            .image-container
+              img.trainer-profile-pic(src="/img/coupleCameraLookAway.jpg")
+            .trainer-text
+              h1 Week 1 Day 3
+              p Need to stretch after this one
+            .trainer-icon-read-me(href='https://resoltz.com/domination')
+              img.trainer-icon(src="img/resoltz_new_mark.png")
+              span.read-more Read More
+        .snapshot
+          .update
+            .image-container
+              img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+            .trainer-text
+              h1 Week 1 Day 4
+              p I beat my personal best in pullups
+            .trainer-icon-read-me(href='https://resoltz.com/domination')
+              img.trainer-icon(src="img/resoltz_new_mark.png")
+              span.read-more Read More
+  .trainer-carousel.largeScreenButtons
+    .buttons
+      a.btn.arrow-left(onclick='plusDivsLargeScreen(-1)')
+        i.fa.fa-arrow-left(aria-hidden='true')
+      a.btn.arrow-right(onclick='plusDivsLargeScreen(1)')
+        i.fa.fa-arrow-right(aria-hidden='true')
+  for post in posts
+    .largeScreen
+      .snapshotLarge
+        .update
+          .image-container
+            img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+          .trainer-text
+            h1 Week 1 Day 1
+            p It was tough but I made it.
+          .trainer-icon-read-me(href='https://resoltz.com/domination')
+            img.trainer-icon(src="img/resoltz_new_mark.png")
+            span.read-more Read More
+        .update
+          .image-container
+            img.trainer-profile-pic(src="/img/coupleWallSquat.jpg")
+          .trainer-text
+            h1 Week 1 Day 2
+            p Glad I had help from my bae
+          .trainer-icon-read-me(href='https://resoltz.com/domination')
+            img.trainer-icon(src="img/resoltz_new_mark.png")
+            span.read-more Read More
+        .update
+          .image-container
+            img.trainer-profile-pic(src="/img/coupleCameraLookAway.jpg")
+          .trainer-text
+            h1 Week 1 Day 3
+            p Need to stretch after this one
+          .trainer-icon-read-me(href='https://resoltz.com/domination')
+            img.trainer-icon(src="img/resoltz_new_mark.png")
+            span.read-more Read More
+      .snapshotLarge
+        .update
+          .image-container
+            img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+          .trainer-text
+            h1 Week 1 Day 4
+            p I beat my personal best in pullups
+          .trainer-icon-read-me(href='https://resoltz.com/domination')
+            img.trainer-icon(src="img/resoltz_new_mark.png")
+            span.read-more Read More
+        .update
+          .image-container
+            img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+          .trainer-text
+            h1 Week 1 Day 4
+            p I beat my personal best in pullups
+          .trainer-icon-read-me(href='https://resoltz.com/domination')
+            img.trainer-icon(src="img/resoltz_new_mark.png")
+            span.read-more Read More
+        .update
+          .image-container
+            img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+          .trainer-text
+            h1 Week 1 Day 4
+            p I beat my personal best in pullups
+          .trainer-icon-read-me(href='https://resoltz.com/domination')
+            img.trainer-icon(src="img/resoltz_new_mark.png")
+            span.read-more Read More
+      .snapshotLarge
+        .update
+          .image-container
+            img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+          .trainer-text
+            h1 Week 1 Day 4
+            p I beat my personal best in pullups
+          .trainer-icon-read-me(href='https://resoltz.com/domination')
+            img.trainer-icon(src="img/resoltz_new_mark.png")
+            span.read-more Read More
+        .update
+          .image-container
+            img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+          .trainer-text
+            h1 Week 1 Day 4
+            p I beat my personal best in pullups
+          .trainer-icon-read-me(href='https://resoltz.com/domination')
+            img.trainer-icon(src="img/resoltz_new_mark.png")
+            span.read-more Read More
+        .update
+          .image-container
+            img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+          .trainer-text
+            h1 Week 1 Day 4
+            p I beat my personal best in pullups
+          .trainer-icon-read-me(href='https://resoltz.com/domination')
+            img.trainer-icon(src="img/resoltz_new_mark.png")
+            span.read-more Read More
+  #navbar.tablet-navbar
+    nav.tablet
+      .resoltz-logo-large.top-nav
+          img.resoltz-top-logo(src="img/resoltz-new-log-vert-large.png")
+      .home-nav.top-nav
+        | HOME
+      .about-nav.top-nav
+        | ABOUT
+      .health-nav.top-nav
+        | HEALTH
+      .coding-nav.top-nav
+        | CODING
+
+  for post in posts
+    .container.container-small-screen
+      - const postDay = normalizeDay(post.post_date)
+      - const postDayNum = normalizeDayNum(post.post_date)
+      - const postMonth = normalizeMonth(post.post_date)
+      - const postYear = normalizeYear(post.post_date)
+      .postInfo
+        .postTitle
+          h1= post.title
+          .titleUnderline
+          .imageBox
+            img.blogImages(src=post.image_url)
+          .imgDateSocialContainer
+            .imgDateContainer
+              img(src="/img/ceo.png")
+              .dateBox
+                span.postDay.date
+                  p=postDay
+                span.postDayNum.date
+                  p=postDayNum
+                span.postMonth.date
+                  p=postMonth
+          .socialIconsTagsContainer
+            .socialIcons
+             a(target="_blank" title="Follow me on Facebook" href="https://www.facebook.com/resoltz")
+              i(class="fa fa-facebook")
+             a(target="_blank" title="Follow me on Twitter" href="https://twitter.com/resoltz")
+              i(class="fa fa-twitter")
+             a(target="_blank" title="Follow me on Twitter" href="https://instagram.com/resoltz")
+              i(class="fa fa-instagram")
+            .tagsContainer
+              p bodyweight, abs, core
+          .blogEntry
+            .blogEntryTitle
+              h1= post.title
+            p= post.blog_entry
+            .blogEntryReadMore
+               img.trainer-icon(src="img/resoltz_new_mark.png")
+               span.read-more Read More
+
+  for post in posts
+    .container.container-large-screen
+      - const postDay = normalizeDay(post.post_date)
+      - const postDayNum = normalizeDayNum(post.post_date)
+      - const postMonth = normalizeMonth(post.post_date)
+      - const postYear = normalizeYear(post.post_date)
+      .postLeft
+        .imgDateSocialContainer
+          .imgDateContainer
+            img(src="/img/ceo.png")
+            .dateBox
+              span.postDay.date
+                p=postDay
+              span.postDayNum.date
+                p=postDayNum
+              span.postMonth.date
+                p=postMonth
+        .socialIconsTagsContainer
+          .socialIcons
+           a(target="_blank" title="Follow me on Facebook" href="https://www.facebook.com/resoltz")
+            i(class="fa fa-facebook")
+           a(target="_blank" title="Follow me on Twitter" href="https://twitter.com/resoltz")
+            i(class="fa fa-twitter")
+           a(target="_blank" title="Follow me on Twitter" href="https://instagram.com/resoltz")
+            i(class="fa fa-instagram")
+          .tagsContainer
+            p bodyweight, abs, core
+      .postRight
+        .postTitle
+          h1= post.title
+        .imageBox
+          img.blogImages(src=post.image_url)
+        .blogEntry
+          p= post.blog_entry
+          .blogEntryReadMore
+             img.trainer-icon(src="img/resoltz_new_mark.png")
+             span.read-more Read More
+  .footer
+      .contact
+        h2 Contact    
+        input.input-contact.input-email(type="text", placeholder="Email")      
+        input.input-contact.input-message(type="text", placeholder="Message")     
+        .button-footer.start-workout(href="#")
+          Submit   
+      .quick-links
+        h2 Quick Links    
+        a(href="#") About       
+        a(href="#") Help       
+        a(href="#") Terms       
+        a(href="#") Privacy    
+      .connect
+        h2 Connect    
+        .social-media-icons(href="#")
+          .footer-social
+            a(href="https://www.facebook.com/resoltz", target="_blank")
+              i.fa.fa-facebook       
+          .footer-social
+            a(href="https://www.instagram.com/resoltz/", target="_blank")
+              i.fa.fa-instagram
+          .footer-social
+            a(href="https://www.twitter.com/resoltz/", target="_blank")
+              i.fa.fa-twitter  
+        h5 © 2017 Resoltz Inc.
