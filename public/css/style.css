@@ -48,8 +48,14 @@ body {
 
 .resoltz-top-logo {
   height: 70%;
-  padding: 3% 3% 0 3%;
+  padding: 3%;
   width: 15%;
+}
+
+.menuBackground {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .trainer-text {
@@ -115,7 +121,7 @@ body {
   font-size: 2em;
   justify-content: space-between;
   position: absolute;
-  margin: 5% 0;
+  margin: 23% 0;
   width: 100%;
 }
 
@@ -317,7 +323,7 @@ ul.topNavigation {
     display: flex;
     font-size: 2em;
     justify-content: space-between;
-    margin: 1% 0;
+    margin: 8% 0;
     position: absolute;
     width: 100%;
   }
@@ -454,8 +460,9 @@ ul.topNavigation {
   .buttons {
     color: #fff;
     display: flex;
-    position: absolute;
     justify-content: space-between;
+    margin: 9% 0;
+    position: absolute;
   }
   .postLeft{
     margin: 2% 2% 2% 2%;
