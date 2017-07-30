@@ -7,7 +7,7 @@
 // });
 
 window.onscroll = function() {
-  const element = document.getElementById('navbar')
+  const element = document.querySelectorAll('.navbar')
     if ( window.pageYOffset > 495 ) {
         element.classList.add('stuck');
     } else {

@@ -43,6 +43,22 @@ router.get('/', (request, response, next) => {
     })
 })
 
+router.get('/post/:id', (request, response, next) => {
+  let id = request.params.id
+  blogs.getPost(id)
+    .then( entry => {
+      response.render('blogpost', {
+        entry,
+        normalizeDate,
+        normalizeDay,
+        normalizeDayNum,
+        normalizeMonth,
+        normalizeYear,
+        title: `Post ${id}`
+      } )
+    })
+})
+
 router.post( '/create', ( request, response, next ) => {
   const post = request.body
   blogs.createPost( post )
