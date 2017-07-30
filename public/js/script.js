@@ -7,12 +7,14 @@
 // });
 
 window.onscroll = function() {
-  const element = document.querySelectorAll('.navbar')
+  const element = document.querySelectorAll('div.navbar')
+  element.forEach( element => {
     if ( window.pageYOffset > 495 ) {
-        element.classList.add('stuck');
+      element.classList.add('stuck');
     } else {
-        element.classList.remove('stuck');
+      element.classList.remove('stuck');
     }
+  })
 }
 
 // Side navigation script
