@@ -165,26 +165,23 @@ a {
   max-width: 100vw;
 }
 
-.show-slide {
-
+.slide-show-right {
+  animation-name: rightTransition;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: both;
+  animation-play-state:running;
 }
 
-@keyframes rightTransitionIn {
+@keyframes rightTransition {
     0%   {left: 100vw;}
     100% {left: 0vw;}
 }
 
-@keyframes rightTransitionOut {
-    0%   {left: 0vw;}
-    100% {left: 100vw;}
-}
-
-@keyframes leftTransitionIn {
-    0%   {left: -100vw;}
-    100% {left: 0vw;}
-}
-
-@keyframes leftTransitionOut {
+@keyframes leftTransition {
     0%   {left: 0vw;}
     100% {left: -100vw;}
 }

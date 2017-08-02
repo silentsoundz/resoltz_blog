@@ -28,7 +28,6 @@ const slides = document.getElementsByClassName( "snapshot" );
 
 function initSlides() {
   slides[ currentIndex ].style = "display: block; left: 0vw;";
-  console.log( "======> does this run" )
 }
 
 function slideManager( n ) {
@@ -56,8 +55,8 @@ function slideManager( n ) {
   } else {
     slides[ prevSlideIndex ].style = "display: none;";
   }
-  slides[ currentIndex ].style = "display: block; left: 0vw;";
-}
+  slides[ currentIndex ].style = "display: block; left: 0vw .slide-show-right; ";
+
 
 // function transitionSlide(currentIndex) {
 //   let slide = document.getElementsByClassName("snapshot");
