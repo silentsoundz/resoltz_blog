@@ -1,11 +1,3 @@
-// Sticky navbar
-// const element = document.getElementById('navbar')
-// window.addEventListener('scroll', () => {
-//      element.getBoundingClientRect().top < 0 ?
-//      element.classList.add('stuck') :
-//      element.classList.remove('stuck');
-// });
-
 window.onscroll = function() {
   const element = document.querySelectorAll('div.navbar')
   element.forEach( element => {
@@ -14,6 +6,7 @@ window.onscroll = function() {
     } else {
       element.classList.remove('stuck');
     }
+
   })
 }
 
@@ -21,7 +14,7 @@ window.onscroll = function() {
 
  // Open the sidenav
 function openNav() {
-  document.getElementById("mySidenav").style.width = "100%";
+  document.getElementById("mySidenav").style.width = "100vw";
 }
 
  // Close/hide the sidenav
@@ -30,23 +23,63 @@ function closeNav() {
 }
 
 
-let slideIndex = 1;
-showDivs(slideIndex);
+let currentIndex = 0;
+const slides = document.getElementsByClassName( "snapshot" );
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
+function initSlides() {
+  slides[ currentIndex ].style = "display: block; left: 0vw;";
+  console.log( "======> does this run" )
 }
 
-function showDivs(n) {
-  let i;
-  let slide = document.getElementsByClassName("snapshot");
-  if (n > slide.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slide.length}
-  for (i = 0; i < slide.length; i++) {
-    slide[i].style.display = "none";
+function slideManager( n ) {
+  let prevSlideIndex, nextSlideIndex
+
+  if( currentIndex === 0 && n === -1 ) {
+    currentIndex = slides.length - 1;
+    nextSlideIndex = 0;
+    prevSlideIndex = currentIndex - 1;
+  } else if ( currentIndex === slides.length - 1 && n === 1) {
+    currentIndex = 0;
+    nextSlideIndex = currentIndex + 1;
+    prevSlideIndex = slides.length - 1;
+  } else {
+    currentIndex += n;
+    nextSlideIndex = currentIndex + 1;
+    prevSlideIndex = currentIndex - 1;
   }
-  slide[slideIndex-1].style.display = "flex";
+  console.log( "currentIndex:", currentIndex )
+  console.log( "nextSlideIndex:", nextSlideIndex )
+  console.log( "prevSlideIndex:", prevSlideIndex )
+
+  if( n < 0 ) {
+    slides[ nextSlideIndex ].style = "display: none;";
+  } else {
+    slides[ prevSlideIndex ].style = "display: none;";
+  }
+  slides[ currentIndex ].style = "display: block; left: 0vw;";
 }
+
+// function transitionSlide(currentIndex) {
+//   let slide = document.getElementsByClassName("snapshot");
+//
+//   if ( currentIndex >= slide.length - 1 ) { slideIndex = 0 }
+//   if ( currentIndex < 1 ) { slideIndex = slide.length - 1 }
+//   let prevSlide = slideIndex < 0
+//     ? slide.length - 1
+//     : slideIndex - 1
+//   let nextSlide = slideIndex === slide.length - 1
+//     ? 0
+//     : slideIndex + 1
+//
+//   console.log( "prevSlide:", prevSlide )
+//   console.log( "slide:", slide )
+//
+//   slide[nextSlide].style = "left: 100vw; z-index: 6;";
+//
+//   slide[slideIndex].style = "left: 0; z-index: 10;";
+//
+//   slide[prevSlide].style = "left: -999em; z-index: 5;";
+// }
 
 
 let slideIndexLarge = 1;
@@ -66,3 +99,5 @@ function showDivsLarge(n) {
   }
   largeSlide[slideIndexLarge-1].style.display = "flex";
 }
+
+document.body.onload = initSlides();

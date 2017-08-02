@@ -20,6 +20,13 @@ body {
 a {
   text-decoration: none;
 }
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+}
+
 .tablet-navbar {
   display: none;
 }
@@ -35,6 +42,7 @@ a {
 .mobile-navbar{
   display: flex;
   justify-content: space-between;
+  height: 57px;
 
 }
 
@@ -125,15 +133,62 @@ a {
   position: absolute;
   margin: 23% 0;
   width: 100%;
+  z-index: 2000;
 }
 /*----------------------------------------------*/
 /*$CAROUSEL*/
 /*----------------------------------------------*/
-#slidy-container {
+
+.slidy {
+  position: relative;
+  display: flex;
+}
+.slidy-container {
   width: 100%;
   overflow: hidden;
   margin: 0 auto;
+  min-height: 100vh;
 }
+
+.snapshot {
+  position: absolute;
+  left: 100vw;
+  overflow-x: hidden;
+}
+.snapshotLarge {
+  -webkit-animation: carouselTransitionIn 1s ;
+  animation: carouselTransitionIn 1s ;
+}
+
+.snapshot .image-container {
+  min-width: 100vw;
+  max-width: 100vw;
+}
+
+.show-slide {
+
+}
+
+@keyframes rightTransitionIn {
+    0%   {left: 100vw;}
+    100% {left: 0vw;}
+}
+
+@keyframes rightTransitionOut {
+    0%   {left: 0vw;}
+    100% {left: 100vw;}
+}
+
+@keyframes leftTransitionIn {
+    0%   {left: -100vw;}
+    100% {left: 0vw;}
+}
+
+@keyframes leftTransitionOut {
+    0%   {left: 0vw;}
+    100% {left: -100vw;}
+}
+
 /*----------------------------------------------*/
 /*$CAROUSEL END*/
 /*----------------------------------------------*/
