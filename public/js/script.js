@@ -1,38 +1,89 @@
-window.onscroll = function() {
-  const element = document.querySelectorAll('div.navbar')
-  element.forEach( element => {
-    if ( window.pageYOffset > 495 ) {
-      element.classList.add('stuck');
-    } else {
-      element.classList.remove('stuck');
-    }
+// window.onscroll = function() {
+//   const element = document.querySelectorAll('div.navbar')
+//   element.forEach( element => {
+//     if ( window.pageYOffset > 495 ) {
+//       element.classList.add('stuck');
+//     } else {
+//       element.classList.remove('stuck');
+//     }
+//
+//   })
+// }
 
-  })
-}
-
+// // Get the navbar
+// var navbar = document.querySelectorAll( 'div.navbar' );
+//
+// // Get the offset position of the navbar
+// var sticky = navbar.offsetTop;
+//
+// // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+// function myFunction() {
+//   if ( window.scrollY >= sticky ) {
+//     navbar.classList.add( "sticky" )
+//   } else {
+//     navbar.classList.remove( "sticky" );
+//   }
+// }
+//
 // Side navigation script
+const openNavBtn = document.querySelector( '.open-nav' )
+const closeNavBtn = document.querySelector( '.close-nav' )
+const sideNav = document.querySelector( "#mySidenav" )
 
+openNavBtn.addEventListener( 'click', openNav )
+closeNavBtn.addEventListener( 'click', closeNav )
  // Open the sidenav
 function openNav() {
-  document.getElementById("mySidenav").style.width = "100vw";
+  console.log("open nav")
+  sideNav.classList.add( "openNav" );
+  // document.querySelector( "#mySidenav" ).style.width = "100vw";
 }
 
  // Close/hide the sidenav
 function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
+  sideNav.classList.remove( "openNav" );
 }
 
 
 let currentIndex = 0;
-const slides = document.getElementsByClassName( "snapshot" );
+const slides = document.querySelectorAll( ".snapshot" );
+const slidesLarge = document.querySelectorAll( ".snapshotLarge" );
+const arrowLeft = document.querySelector( ".arrow-left" );
+const arrowRight = document.querySelector( ".arrow-right" );
+const arrowLeftLarge = document.querySelector( ".arrow-left-large" );
+const arrowRightLarge = document.querySelector( ".arrow-right-large" );
+const mobileView = document.querySelector( ".mobileScreen" );
+const largeView = document.querySelector( ".largeScreen" );
+
+
+arrowLeft.addEventListener( 'click', function() {
+  return slideManager(-1)
+})
+
+arrowRight.addEventListener( 'click', function() {
+  return slideManager(1)
+})
+
+arrowLeftLarge.addEventListener( 'click', function() {
+  return slideManagerLarge(-1)
+})
+
+arrowRightLarge.addEventListener( 'click', function() {
+  return slideManagerLarge(1)
+})
+
+
+
+
 
 function initSlides() {
-  slides[ currentIndex ].style = "display: block; left: 0vw;";
+  slides[ currentIndex ].classList.add( "initializeSlide")
+  slidesLarge[ currentIndex ].classList.add( "initializeSlide")
+  console.log( "======> slides are initialized!" )
 }
 
 function slideManager( n ) {
   let prevSlideIndex, nextSlideIndex
-
   if( currentIndex === 0 && n === -1 ) {
     currentIndex = slides.length - 1;
     nextSlideIndex = 0;
@@ -51,52 +102,41 @@ function slideManager( n ) {
   console.log( "prevSlideIndex:", prevSlideIndex )
 
   if( n < 0 ) {
-    slides[ nextSlideIndex ].style = "display: none;";
+    slides[ nextSlideIndex ].classList.remove( "initializeSlide" );
   } else {
-    slides[ prevSlideIndex ].style = "display: none;";
+    slides[ prevSlideIndex ].classList.remove( "initializeSlide" );
   }
-  slides[ currentIndex ].style = "display: block; left: 0vw .slide-show-right; ";
-
-
-// function transitionSlide(currentIndex) {
-//   let slide = document.getElementsByClassName("snapshot");
-//
-//   if ( currentIndex >= slide.length - 1 ) { slideIndex = 0 }
-//   if ( currentIndex < 1 ) { slideIndex = slide.length - 1 }
-//   let prevSlide = slideIndex < 0
-//     ? slide.length - 1
-//     : slideIndex - 1
-//   let nextSlide = slideIndex === slide.length - 1
-//     ? 0
-//     : slideIndex + 1
-//
-//   console.log( "prevSlide:", prevSlide )
-//   console.log( "slide:", slide )
-//
-//   slide[nextSlide].style = "left: 100vw; z-index: 6;";
-//
-//   slide[slideIndex].style = "left: 0; z-index: 10;";
-//
-//   slide[prevSlide].style = "left: -999em; z-index: 5;";
-// }
-
-
-let slideIndexLarge = 1;
-showDivsLarge(slideIndexLarge);
-
-function plusDivsLargeScreen(n) {
-  showDivsLarge(slideIndexLarge += n);
+  slides[ currentIndex ].classList.add( "initializeSlide" );
 }
 
-function showDivsLarge(n) {
-  let i;
-  let largeSlide = document.getElementsByClassName("snapshotLarge");
-  if (n > largeSlide.length) {slideIndexLarge = 1}
-  if (n < 1) {slideIndexLarge = largeSlide.length}
-  for (i = 0; i < largeSlide.length; i++) {
-     largeSlide[i].style.display = "none";
+function slideManagerLarge( n ) {
+  let prevSlideIndex, nextSlideIndex
+
+  if( currentIndex === 0 && n === -1 ) {
+    currentIndex = slidesLarge.length - 1;
+    nextSlideIndex = 0;
+    prevSlideIndex = currentIndex - 1;
+  } else if ( currentIndex === slidesLarge.length - 1 && n === 1) {
+    currentIndex = 0;
+    nextSlideIndex = currentIndex + 1;
+    prevSlideIndex = slidesLarge.length - 1;
+  } else {
+    currentIndex += n;
+    nextSlideIndex = currentIndex + 1;
+    prevSlideIndex = currentIndex - 1;
   }
-  largeSlide[slideIndexLarge-1].style.display = "flex";
+  console.log( "currentIndex:", currentIndex )
+  console.log( "nextSlideIndex:", nextSlideIndex )
+  console.log( "prevSlideIndex:", prevSlideIndex )
+
+  if( n < 0 ) {
+    slidesLarge[ nextSlideIndex ].classList.remove( "initializeSlide" );
+  } else {
+    slidesLarge[ prevSlideIndex ].classList.remove( "initializeSlide" );
+  }
+  slidesLarge[ currentIndex ].classList.add( "initializeSlide" );
 }
+
+
 
 document.body.onload = initSlides();

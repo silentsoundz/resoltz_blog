@@ -21,6 +21,8 @@ a {
   text-decoration: none;
 }
 
+
+
 .main-wrapper {
   display: flex;
   flex-direction: column;
@@ -120,6 +122,10 @@ a {
   align-items: center;
 }
 
+.openNav {
+  width: 100vw;
+}
+
 #main {
   transition: margin-left .5s;
   padding: 16px;
@@ -133,8 +139,26 @@ a {
   position: absolute;
   margin: 23% 0;
   width: 100%;
-  z-index: 2000;
+  z-index: 10;
 }
+
+/* Page content */
+.content {
+  padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches it scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 60px;
+}
+
 /*----------------------------------------------*/
 /*$CAROUSEL*/
 /*----------------------------------------------*/
@@ -144,20 +168,22 @@ a {
   display: flex;
 }
 .slidy-container {
-  width: 100%;
-  overflow: hidden;
+  border-bottom: solid;
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 55vh;
+  overflow: hidden;
+  padding-bottom: 2%;
+  width: 100%;
 }
 
 .snapshot {
-  position: absolute;
   left: 100vw;
   overflow-x: hidden;
+  position: absolute;
+  display: none;
 }
 .snapshotLarge {
-  -webkit-animation: carouselTransitionIn 1s ;
-  animation: carouselTransitionIn 1s ;
+  display: none;
 }
 
 .snapshot .image-container {
@@ -167,6 +193,17 @@ a {
 
 .slide-show-right {
   animation-name: rightTransition;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: both;
+  animation-play-state:running;
+}
+
+.slide-show-left {
+  animation-name: leftTransition;
   animation-duration: 2s;
   animation-timing-function: linear;
   animation-delay: 0s;
@@ -186,6 +223,14 @@ a {
     100% {left: -100vw;}
 }
 
+.initializeSlide {
+  display: flex;
+  left: 0vw;
+}
+
+.hideSlide {
+  display: none;
+}
 /*----------------------------------------------*/
 /*$CAROUSEL END*/
 /*----------------------------------------------*/
@@ -201,6 +246,7 @@ a {
   display: flex;
   flex-direction: column;
 }
+
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
@@ -316,7 +362,7 @@ ul.topNavigation {
   position: relative;
   top: 50px;
   width: 25%;
-  z-index: 300;
+  z-index: 5;
 }
 
 .tagsContainer p {
@@ -393,6 +439,10 @@ ul.topNavigation {
     display: flex;
   }
 
+  .snapshotLarge {
+    flex-direction: row;
+  }
+
   .buttons {
     color: #fff;
     cursor: pointer;
@@ -411,13 +461,13 @@ ul.topNavigation {
     z-index: 1000;
   }
 
-  .stuck {
+  /*.stuck {
     bottom: auto;
     position:fixed;
     top: -2.5%;
     width:100%;
     z-index:1000;
-  }
+  }*/
 
   .resoltz-logo-large.top-nav{
     background-color: black;
@@ -448,6 +498,17 @@ ul.topNavigation {
 
   .mobileScreen {
     display:none;
+  }
+
+
+
+
+  .update {
+    width: 100%;
+  }
+
+  img.trainer-profile-pic {
+    width: 33vw;
   }
 
   .blog-post-wrapper {
@@ -565,10 +626,10 @@ ul.topNavigation {
     flex-direction: column;
   }
 
-  .stuck{
+  /*.stuck{
     padding: -1% 0 0 0;
     top: -4.5%;
-  }
+  }*/
 
   .buttons {
     color: #fff;

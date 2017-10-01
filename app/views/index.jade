@@ -3,7 +3,7 @@ extends layout
 block content
   .main-wrapper
     #mySidenav.sidenav
-      a.closebtn(href='javascript:void(0)' onclick='closeNav()')
+      a.close-nav
        p X 
       a(href="/")
        p Home
@@ -14,65 +14,62 @@ block content
       
     .mobile-navbar
       .menuBackground
-        i.fa.fa-bars(onclick='openNav()')
+        i.fa.fa-bars.open-nav
       .logoContainer
         img.resoltz-top-logo(src="img/resoltz_new_mark.png")
 
     .trainer-carousel.smallScreenButtons
       .buttons
-        a.btn.arrow-left(onclick='slideManager(-1)')
-          i.fa.fa-arrow-left(aria-hidden='true')
-        a.btn.arrow-right(onclick='slideManager(1)')
-          i.fa.fa-arrow-right(aria-hidden='true')
+        i.fa.fa-arrow-left.btn.arrow-left(aria-hidden='true')
+        i.fa.fa-arrow-right.btn.arrow-right(aria-hidden='true')
       .slidy-container.mobileScreen
-        .slidy   
-          .snapshot
-            .update
-              .image-container
-                img.trainer-profile-pic(src="/img/femalePullUp.jpg")
-              .trainer-text
-                h1 Week 1 Day 1
-                p It was tough but I made it.
-              .summaryPost-readmore
+        .slidy 
+          .row_inner
+            .snapshot
+              .update
+                .image-container
+                  img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+                .trainer-text
+                  h1 Week 1 Day 1
+                  p It was tough but I made it.
+                .summaryPost-readmore
+                  .trainer-icon-read-me(href='https://resoltz.com/domination')
+                    img.trainer-icon(src="img/resoltz_new_mark.png")
+                    span.read-more Read More
+            .snapshot
+              .update
+                .image-container
+                  img.trainer-profile-pic(src="/img/coupleWallSquat.jpg")
+                .trainer-text
+                  h1 Week 1 Day 2
+                  p Glad I had help from my bae
                 .trainer-icon-read-me(href='https://resoltz.com/domination')
                   img.trainer-icon(src="img/resoltz_new_mark.png")
                   span.read-more Read More
-          .snapshot
-            .update
-              .image-container
-                img.trainer-profile-pic(src="/img/coupleWallSquat.jpg")
-              .trainer-text
-                h1 Week 1 Day 2
-                p Glad I had help from my bae
-              .trainer-icon-read-me(href='https://resoltz.com/domination')
-                img.trainer-icon(src="img/resoltz_new_mark.png")
-                span.read-more Read More
-          .snapshot
-            .update
-              .image-container
-                img.trainer-profile-pic(src="/img/coupleCameraLookAway.jpg")
-              .trainer-text
-                h1 Week 1 Day 3
-                p Need to stretch after this one
-              .trainer-icon-read-me(href='https://resoltz.com/domination')
-                img.trainer-icon(src="img/resoltz_new_mark.png")
-                span.read-more Read More
-          .snapshot
-            .update
-              .image-container
-                img.trainer-profile-pic(src="/img/femalePullUp.jpg")
-              .trainer-text
-                h1 Week 1 Day 4
-                p I beat my personal best in pullups
-              .trainer-icon-read-me(href='https://resoltz.com/domination')
-                img.trainer-icon(src="img/resoltz_new_mark.png")
-                span.read-more Read More
+            .snapshot
+              .update
+                .image-container
+                  img.trainer-profile-pic(src="/img/coupleCameraLookAway.jpg")
+                .trainer-text
+                  h1 Week 1 Day 3
+                  p Need to stretch after this one
+                .trainer-icon-read-me(href='https://resoltz.com/domination')
+                  img.trainer-icon(src="img/resoltz_new_mark.png")
+                  span.read-more Read More
+            .snapshot
+              .update
+                .image-container
+                  img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+                .trainer-text
+                  h1 Week 1 Day 4
+                  p I beat my personal best in pullups
+                .trainer-icon-read-me(href='https://resoltz.com/domination')
+                  img.trainer-icon(src="img/resoltz_new_mark.png")
+                  span.read-more Read More
     .trainer-carousel.largeScreenButtons
       .buttons
-        a.btn.arrow-left(onclick='slideManager(-1)')
-          i.fa.fa-arrow-left(aria-hidden='true')
-        a.btn.arrow-right(onclick='slideManager(1)')
-          i.fa.fa-arrow-right(aria-hidden='true')
+          i.fa.fa-arrow-left.arrow-left-large(aria-hidden='true')
+          i.fa.fa-arrow-right.arrow-right-large(aria-hidden='true')
     for post in posts
       .largeScreen
         .snapshotLarge
