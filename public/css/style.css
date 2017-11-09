@@ -163,23 +163,9 @@ a {
 /*$CAROUSEL*/
 /*----------------------------------------------*/
 
-.slidy {
-  position: relative;
-  display: flex;
-}
-.slidy-container {
-  border-bottom: solid;
-  margin: 0 auto;
-  min-height: 55vh;
-  overflow: hidden;
-  padding-bottom: 2%;
-  width: 100%;
-}
-
 .snapshot {
   left: 100vw;
   overflow-x: hidden;
-  position: absolute;
   display: none;
 }
 .snapshotLarge {
@@ -435,13 +421,23 @@ ul.topNavigation {
     display: none;
   }
 
+
+  .largeScreen {
+    display:flex;
+  }
   .largeScreenButtons {
     display: flex;
   }
 
-  .snapshotLarge {
+  .snapshot {
     flex-direction: row;
+    margin: 0 0 3% 0;
   }
+
+  /*.snapshotLarge {
+    flex-direction: row;
+    margin: 0 0 3% 0;
+  }*/
 
   .buttons {
     color: #fff;
@@ -457,17 +453,8 @@ ul.topNavigation {
   .tablet-navbar{
     display: flex;
     flex-direction: row;
-    margin: 2% 0 0 0;
     z-index: 1000;
   }
-
-  /*.stuck {
-    bottom: auto;
-    position:fixed;
-    top: -2.5%;
-    width:100%;
-    z-index:1000;
-  }*/
 
   .resoltz-logo-large.top-nav{
     background-color: black;
@@ -495,13 +482,6 @@ ul.topNavigation {
     display: flex;
     flex-direction: row;
   }
-
-  .mobileScreen {
-    display:none;
-  }
-
-
-
 
   .update {
     width: 100%;
@@ -567,9 +547,6 @@ ul.topNavigation {
     display:block;
   }
 
-  .largeScreen {
-    display: flex;
-  }
 
   .imgDateSocialContainer {
     margin: 2% 0;
@@ -613,9 +590,6 @@ ul.topNavigation {
   .mobileScreen {
     display:none;
   }
-  .largeScreen {
-    display: flex;
-  }
 
   .container-small-screen {
     display: none;
@@ -656,6 +630,7 @@ ul.topNavigation {
     padding: 1%;
     order: 2;
   }
+  
   .postRight {
     margin: 2% 2% 2% 2%;
     padding: 1%;
@@ -694,5 +669,4 @@ ul.topNavigation {
   .imgDateSocialContainer {
     border: none;
   }
-
 }

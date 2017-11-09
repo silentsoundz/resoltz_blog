@@ -22,57 +22,55 @@ block content
       .buttons
         i.fa.fa-arrow-left.btn.arrow-left(aria-hidden='true')
         i.fa.fa-arrow-right.btn.arrow-right(aria-hidden='true')
-      .slidy-container.mobileScreen
-        .slidy 
-          .row_inner
-            .snapshot
-              .update
-                .image-container
-                  img.trainer-profile-pic(src="/img/femalePullUp.jpg")
-                .trainer-text
-                  h1 Week 1 Day 1
-                  p It was tough but I made it.
-                .summaryPost-readmore
-                  .trainer-icon-read-me(href='https://resoltz.com/domination')
-                    img.trainer-icon(src="img/resoltz_new_mark.png")
-                    span.read-more Read More
-            .snapshot
-              .update
-                .image-container
-                  img.trainer-profile-pic(src="/img/coupleWallSquat.jpg")
-                .trainer-text
-                  h1 Week 1 Day 2
-                  p Glad I had help from my bae
-                .trainer-icon-read-me(href='https://resoltz.com/domination')
-                  img.trainer-icon(src="img/resoltz_new_mark.png")
-                  span.read-more Read More
-            .snapshot
-              .update
-                .image-container
-                  img.trainer-profile-pic(src="/img/coupleCameraLookAway.jpg")
-                .trainer-text
-                  h1 Week 1 Day 3
-                  p Need to stretch after this one
-                .trainer-icon-read-me(href='https://resoltz.com/domination')
-                  img.trainer-icon(src="img/resoltz_new_mark.png")
-                  span.read-more Read More
-            .snapshot
-              .update
-                .image-container
-                  img.trainer-profile-pic(src="/img/femalePullUp.jpg")
-                .trainer-text
-                  h1 Week 1 Day 4
-                  p I beat my personal best in pullups
-                .trainer-icon-read-me(href='https://resoltz.com/domination')
-                  img.trainer-icon(src="img/resoltz_new_mark.png")
-                  span.read-more Read More
+      .mobileScreen
+        .snapshot
+          .update
+            .image-container
+              img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+            .trainer-text
+              h1 Week 1 Day 1
+              p It was tough but I made it.
+            .summaryPost-readmore
+              .trainer-icon-read-me(href='https://resoltz.com/domination')
+                img.trainer-icon(src="img/resoltz_new_mark.png")
+                span.read-more Read More
+        .snapshot
+          .update
+            .image-container
+              img.trainer-profile-pic(src="/img/coupleWallSquat.jpg")
+            .trainer-text
+              h1 Week 1 Day 2
+              p Glad I had help from my bae
+            .trainer-icon-read-me(href='https://resoltz.com/domination')
+              img.trainer-icon(src="img/resoltz_new_mark.png")
+              span.read-more Read More
+        .snapshot
+          .update
+            .image-container
+              img.trainer-profile-pic(src="/img/coupleCameraLookAway.jpg")
+            .trainer-text
+              h1 Week 1 Day 3
+              p Need to stretch after this one
+            .trainer-icon-read-me(href='https://resoltz.com/domination')
+              img.trainer-icon(src="img/resoltz_new_mark.png")
+              span.read-more Read More
+        .snapshot
+          .update
+            .image-container
+              img.trainer-profile-pic(src="/img/femalePullUp.jpg")
+            .trainer-text
+              h1 Week 1 Day 4
+              p I beat my personal best in pullups
+            .trainer-icon-read-me(href='https://resoltz.com/domination')
+              img.trainer-icon(src="img/resoltz_new_mark.png")
+              span.read-more Read More
     .trainer-carousel.largeScreenButtons
       .buttons
           i.fa.fa-arrow-left.arrow-left-large(aria-hidden='true')
           i.fa.fa-arrow-right.arrow-right-large(aria-hidden='true')
     for post in posts
       .largeScreen
-        .snapshotLarge
+        .snapshot
           .update
             .image-container
               img.trainer-profile-pic(src="/img/femalePullUp.jpg")
@@ -100,7 +98,7 @@ block content
             .trainer-icon-read-me(href='https://resoltz.com/domination')
               img.trainer-icon(src="img/resoltz_new_mark.png")
               span.read-more Read More
-        .snapshotLarge
+        .snapshot
           .update
             .image-container
               img.trainer-profile-pic(src="/img/femalePullUp.jpg")
@@ -128,7 +126,7 @@ block content
             .trainer-icon-read-me(href='https://resoltz.com/domination')
               img.trainer-icon(src="img/resoltz_new_mark.png")
               span.read-more Read More
-        .snapshotLarge
+        .snapshot
           .update
             .image-container
               img.trainer-profile-pic(src="/img/femalePullUp.jpg")
@@ -160,13 +158,13 @@ block content
       nav.tablet
         .resoltz-logo-large.top-nav
             img.resoltz-top-logo(src="img/resoltz-new-log-vert-large.png")
-        .home-nav.top-nav
+        a.top-nav.home-nav
           | HOME
-        .about-nav.top-nav
+        a.top-nav.about-nav
           | ABOUT
-        .health-nav.top-nav
+        a.top-nav.health-nav
           | HEALTH
-        .coding-nav.top-nav
+        a.top-nav.coding-nav
           | CODING
     .blog-post-wrapper
       for post in posts
@@ -249,18 +247,18 @@ block content
                  img.trainer-icon(src="img/resoltz_new_mark.png")
                  a.span.read-more(href=`/post/${post.id}`) Read More
     .footer
-        .contact
-          h2 Contact    
-          input.input-contact.input-email(type="text", placeholder="Email")      
-          input.input-contact.input-message(type="text", placeholder="Message")     
-          .button-footer.start-workout(href="#")
-            Submit   
-        .quick-links
-          h2 Quick Links    
-          a(href="#") About       
-          a(href="#") Help       
-          a(href="#") Terms       
-          a(href="#") Privacy    
+        //- .contact
+        //-   h2 Contact    
+        //-   input.input-contact.input-email(type="text", placeholder="Email")      
+        //-   input.input-contact.input-message(type="text", placeholder="Message")     
+        //-   .button-footer.start-workout(href="#")
+        //-     Submit   
+        //- .quick-links
+        //-   h2 Quick Links    
+        //-   a(href="#") About       
+        //-   a(href="#") Help       
+        //-   a(href="#") Terms       
+        //-   a(href="#") Privacy    
         .connect
           h2 Connect    
           .social-media-icons(href="#")

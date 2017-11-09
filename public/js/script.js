@@ -1,30 +1,21 @@
-// window.onscroll = function() {
-//   const element = document.querySelectorAll('div.navbar')
-//   element.forEach( element => {
-//     if ( window.pageYOffset > 495 ) {
-//       element.classList.add('stuck');
-//     } else {
-//       element.classList.remove('stuck');
-//     }
-//
-//   })
-// }
 
-// // Get the navbar
-// var navbar = document.querySelectorAll( 'div.navbar' );
-//
-// // Get the offset position of the navbar
-// var sticky = navbar.offsetTop;
-//
-// // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-// function myFunction() {
-//   if ( window.scrollY >= sticky ) {
-//     navbar.classList.add( "sticky" )
-//   } else {
-//     navbar.classList.remove( "sticky" );
-//   }
-// }
-//
+// Get the navbar
+const navbar = document.querySelector( '.navbar.tablet-navbar' );
+
+// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+
+function stickyNav() {
+  if ( window.scrollY > navbar.offsetTop ) {
+    navbar.classList.add( "sticky" )
+  } else {
+    navbar.classList.remove( "sticky" );
+  }
+}
+
+stickyNav();
+
+window.addEventListener( "scroll", stickyNav )
+
 // Side navigation script
 const openNavBtn = document.querySelector( '.open-nav' )
 const closeNavBtn = document.querySelector( '.close-nav' )
@@ -43,7 +34,6 @@ function openNav() {
 function closeNav() {
   sideNav.classList.remove( "openNav" );
 }
-
 
 let currentIndex = 0;
 const slides = document.querySelectorAll( ".snapshot" );
@@ -72,13 +62,9 @@ arrowRightLarge.addEventListener( 'click', function() {
   return slideManagerLarge(1)
 })
 
-
-
-
-
 function initSlides() {
-  slides[ currentIndex ].classList.add( "initializeSlide")
-  slidesLarge[ currentIndex ].classList.add( "initializeSlide")
+  slides[ currentIndex ].classList.add("initializeSlide")
+  // slidesLarge[ currentIndex ].classList.add("initializeSlide")
   console.log( "======> slides are initialized!" )
 }
 
@@ -88,7 +74,7 @@ function slideManager( n ) {
     currentIndex = slides.length - 1;
     nextSlideIndex = 0;
     prevSlideIndex = currentIndex - 1;
-  } else if ( currentIndex === slides.length - 1 && n === 1) {
+  } else if ( currentIndex === (slides.length - 1) && n === 1) {
     currentIndex = 0;
     nextSlideIndex = currentIndex + 1;
     prevSlideIndex = slides.length - 1;
@@ -97,9 +83,9 @@ function slideManager( n ) {
     nextSlideIndex = currentIndex + 1;
     prevSlideIndex = currentIndex - 1;
   }
+  console.log( "==> prevSlideIndex:", prevSlideIndex )
   console.log( "currentIndex:", currentIndex )
   console.log( "nextSlideIndex:", nextSlideIndex )
-  console.log( "prevSlideIndex:", prevSlideIndex )
 
   if( n < 0 ) {
     slides[ nextSlideIndex ].classList.remove( "initializeSlide" );
@@ -109,33 +95,33 @@ function slideManager( n ) {
   slides[ currentIndex ].classList.add( "initializeSlide" );
 }
 
-function slideManagerLarge( n ) {
-  let prevSlideIndex, nextSlideIndex
-
-  if( currentIndex === 0 && n === -1 ) {
-    currentIndex = slidesLarge.length - 1;
-    nextSlideIndex = 0;
-    prevSlideIndex = currentIndex - 1;
-  } else if ( currentIndex === slidesLarge.length - 1 && n === 1) {
-    currentIndex = 0;
-    nextSlideIndex = currentIndex + 1;
-    prevSlideIndex = slidesLarge.length - 1;
-  } else {
-    currentIndex += n;
-    nextSlideIndex = currentIndex + 1;
-    prevSlideIndex = currentIndex - 1;
-  }
-  console.log( "currentIndex:", currentIndex )
-  console.log( "nextSlideIndex:", nextSlideIndex )
-  console.log( "prevSlideIndex:", prevSlideIndex )
-
-  if( n < 0 ) {
-    slidesLarge[ nextSlideIndex ].classList.remove( "initializeSlide" );
-  } else {
-    slidesLarge[ prevSlideIndex ].classList.remove( "initializeSlide" );
-  }
-  slidesLarge[ currentIndex ].classList.add( "initializeSlide" );
-}
+// function slideManagerLarge( n ) {
+//   let prevSlideIndex, nextSlideIndex
+//
+//   if( currentIndex === 0 && n === -1 ) {
+//     currentIndex = slidesLarge.length - 1;
+//     nextSlideIndex = 0;
+//     prevSlideIndex = currentIndex - 1;
+//   } else if ( currentIndex === slidesLarge.length - 1 && n === 1) {
+//     currentIndex = 0;
+//     nextSlideIndex = currentIndex + 1;
+//     prevSlideIndex = slidesLarge.length - 1;
+//   } else {
+//     currentIndex += n;
+//     nextSlideIndex = currentIndex + 1;
+//     prevSlideIndex = currentIndex - 1;
+//   }
+//   console.log( "currentIndex:", currentIndex )
+//   console.log( "nextSlideIndex:", nextSlideIndex )
+//   console.log( "prevSlideIndex:", prevSlideIndex )
+//
+//   if( n < 0 ) {
+//     slidesLarge[ nextSlideIndex ].classList.remove( "initializeSlide" );
+//   } else {
+//     slidesLarge[ prevSlideIndex ].classList.remove( "initializeSlide" );
+//   }
+//   slidesLarge[ currentIndex ].classList.add( "initializeSlide" );
+// }
 
 
 
