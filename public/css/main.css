@@ -2096,7 +2096,7 @@
 
 	#header {
 		position: relative;
-		background-image: url("/images/header.jpg");
+		background-image: url("https://cdnresoltzcus.blob.core.windows.net/images/blog/header.jpg");
 		background-size: cover;
 		background-position: center center;
 		background-attachment: fixed;
