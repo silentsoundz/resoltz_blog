@@ -1,10 +1,11 @@
-const promise = require( 'bluebird' )
-const options = { promiseLib: promise }
-const pgp = require( 'pg-promise' )( options )
-const CONNECTION_STRING = `postgres://apigene@resoltz-api-pg:Resoltz21@resoltz-api-pg.postgres.database.azure.com:5432/resoltz-blog?ssl=true`
+// const promise = require( 'bluebird' )
+// const options = { promiseLib: promise }
+// const pgp = require( 'pg-promise' )( options )
+// const CONNECTION_STRING = `postgres://apigene@resoltz-api-pg:Resoltz21@resoltz-api-pg.postgres.database.azure.com:5432/resoltz-blog?ssl=true`
+//
+// const db = pgp( CONNECTION_STRING )
 
-const db = pgp( CONNECTION_STRING )
-
+const db = require( './database/connection' )
 const blogs = {
 
   getAllPosts: () => {
