@@ -9,7 +9,7 @@ var config = {
       name: 'azure-blog'
     },
     port: process.env.PORT || 3000,
-    db: 'postgres://localhost/azure-blog-development'
+    db: `postgres://${process.env.USER}@localhost:${process.env.DB_PORT}/${process.env.DB_NAME}`
   },
 
   test: {
@@ -26,13 +26,13 @@ var config = {
     app: {
       name: 'azure-blog'
     },
-    host: 'http://api-resoltz.azurewebsites.net',
-  	user: 'apigene',
-  	password: 'Resoltz21',
-  	database: 'resoltz-blog',
+    host: process.env.DB_HOST,
+  	user: process.env.DB_USERNAME,
+  	password: process.env.DB_PASSWORD,
+  	database: process.env.DB_NAME,
   	port: process.env.PORT || 3000,
   	ssl: true,
-    db: 'azure-blog-pg.postgres.database.azure.com'
+    db: process.env.DB_SOURCE
   }
 };
 
