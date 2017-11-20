@@ -1,7 +1,8 @@
-const pgp = require('pg-promise')()
-const CONNECTION_STRING = require( '../../../config/config' )
+const pgp = require('pg-promise')();
+const config = require('../../../config/config');
 
-const db = pgp(CONNECTION_STRING)
+const db = pgp('pg://baahmac@localhost:5432/resoltz-blog');
+// console.log( "config:", config )
+// const db = pgp(config);
 
-console.log( CONNECTION_STRING )
-module.exports = db
+module.exports = db;

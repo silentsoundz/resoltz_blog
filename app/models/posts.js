@@ -1,4 +1,4 @@
-const db = require( './database/posts')
+const db = require('./database/posts');
 
 module.exports = {
   getPosts: db.getPosts,
@@ -23,5 +23,5 @@ module.exports = {
   createWorkout: db.createWorkout,
   editWorkout: db.editWorkout,
   deleteWorkout: db.deleteWorkout,
-  searchWorkouts: db.searchWorkouts
-}
+  searchWorkouts: db.searchWorkouts,
+};

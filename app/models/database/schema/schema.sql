@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS post CASCADE;
 CREATE TABLE post (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
-  member_id INTEGER references member(id),
+  member_id INTEGER references member(id) ON DELETE CASCADE,
   snippet VARCHAR(1000) NOT NULL,
   post_entry TEXT NOT NULL,
   image_url VARCHAR(1000),
@@ -25,15 +25,15 @@ CREATE TABLE post (
 
 DROP TABLE IF EXISTS role;
 CREATE TABLE role (
-  member_id INTEGER references member(id),
+  member_id INTEGER references member(id) ON DELETE CASCADE,
   member_role VARCHAR(255) DEFAULT 'member',
   date_changed TIMESTAMP DEFAULT now());
 
 DROP TABLE IF EXISTS comment;
 CREATE TABLE comment (
   id SERIAL PRIMARY KEY,
-  post_id INTEGER references post(id),
-  member_id INTEGER references member(id),
+  post_id INTEGER references post(id) ON DELETE CASCADE,
+  member_id INTEGER references member(id) ON DELETE CASCADE,
   description VARCHAR(1000) NOT NULL,
   status INTEGER,
   date_posted TIMESTAMP DEFAULT now());
@@ -41,8 +41,8 @@ CREATE TABLE comment (
 DROP TABLE IF EXISTS workout;
 CREATE TABLE workout (
   id SERIAL PRIMARY KEY,
-  member_id INTEGER references member(id),
-  post_id INTEGER references post(id),
+  member_id INTEGER references member(id) ON DELETE CASCADE,
+  post_id INTEGER references post(id) ON DELETE CASCADE,
   description VARCHAR(1000) NOT NULL,
   weight INTEGER,
   calories INTEGER,

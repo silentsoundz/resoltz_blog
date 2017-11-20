@@ -1,7 +1,8 @@
-const db = require( './connection' )
+const db = require('./connection');
 
-const createUser = function( fname, lname, username, email, password ){
-  return db.query(`
+const createUser = function (fname, lname, username, email, password) {
+  return db.query(
+    `
     INSERT INTO
       member ( fname, lname, username, email, password )
     VALUES
@@ -9,13 +10,16 @@ const createUser = function( fname, lname, username, email, password ){
     RETURNING
       *
     `,
-    [ fname, lname, username, email, password ] )
-    .catch(error => { console.log( error.message );
+    [fname, lname, username, email, password],
+  )
+    .catch((error) => {
+      console.log(error.message);
     });
 };
 
-const editUser = function( member ){
-  return db.oneOrNone(`
+const editUser = function (member) {
+  return db.oneOrNone(
+    `
     UPDATE member
       SET fname=$2 , lname=$3, username=$4, email=$5, password=$6
     WHERE id=$1

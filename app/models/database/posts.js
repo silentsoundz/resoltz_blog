@@ -1,50 +1,42 @@
-const db = require( './connection' )
+const db = require('./connection');
 
-const getPosts = () => {
-  return db.any(`
+const getPosts = () => db.any(`
     SELECT * FROM post
     `, [])
-    .catch( error => {
-      console.error( {message: "Get all posts error",error, arguments: arguments})
-      throw error
-    })
-}
+  .catch((error) => {
+    console.error({ message: 'Get all posts error', error, arguments });
+    throw error;
+  });
 
-const getPostByID = ( postID ) => {
-  return db.any(`
+const getPostByID = postID => db.any(`
     SELECT * FROM post
     WHERE id = $1
-    `, [ postID ])
-    .catch( error => {
-      console.error( {message: "Get post by ID", arguments: arguments})
-      throw error
-    })
-}
+    `, [postID])
+  .catch((error) => {
+    console.error({ message: 'Get post by ID', arguments });
+    throw error;
+  });
 
-const getPostsByCategoryID = ( CategoryID ) => {
-  return db.any(`
+const getPostsByCategoryID = CategoryID => db.any(`
     SELECT * FROM post
     WHERE categories = $1
-    `, [ CategoryID ])
-    .catch( error => {
-      console.error( {message: "Get post by CategoryID", arguments: arguments})
-      throw error
-    })
-}
+    `, [CategoryID])
+  .catch((error) => {
+    console.error({ message: 'Get post by CategoryID', arguments });
+    throw error;
+  });
 
-const getPostsByMemberID = ( MemberID ) => {
-  return db.any(`
+const getPostsByMemberID = MemberID => db.any(`
     SELECT * FROM post
     WHERE id = $1
-    `, [ MemberID ])
-    .catch( error => {
-      console.error( {message: "Get post by MemberID", arguments: arguments})
-      throw error
-    })
-}
+    `, [MemberID])
+  .catch((error) => {
+    console.error({ message: 'Get post by MemberID', arguments });
+    throw error;
+  });
 
-const createPost = ( title, member_id, snippet, post_entry, image_url, tags, status, categories  ) =>{
-  return db.query(`
+const createPost = (title, member_id, snippet, post_entry, image_url, tags, status, categories) => db.query(
+  `
     INSERT INTO
       post (title, member_id, snippet, post_entry, image_url, tags, status, categories)
     VALUES
@@ -52,12 +44,12 @@ const createPost = ( title, member_id, snippet, post_entry, image_url, tags, sta
     RETURNING
       *
     `,
-    [ title, member_id, snippet, post_entry, image_url, tags, status, categories ])
+  [title, member_id, snippet, post_entry, image_url, tags, status, categories],
+)
     .catch( error => {
       console.error( {message: "Cannot create post", arguments: arguments})
       throw error
     })
-}
 
 const editPost = ( id, post ) =>{
   return db.query(`
@@ -102,12 +94,60 @@ const searchPosts = input => {
     [ input ] )
 }
 
+const getComments = () => {
+  return db.any(`
+    SELECT * FROM comment
+    `, [])
+    .catch( error => {
+      console.error( {message: "Get all comments error",error, arguments: arguments})
+      throw error
+    })
+}
+
+const getCommentByID = ( commentID ) => {
+  return db.any(`
+    SELECT * FROM comment
+    WHERE id = $1
+    `, [ commentID ])
+    .catch( error => {
+      console.error( {message: "Get comment by commentID", arguments: arguments})
+      throw error
+    })
+}
+
+const getCommentsByCategoryID = ( categoryID ) => {
+  return db.any(`
+    SELECT * FROM post
+    JOIN comment
+    ON comment.post_id = post.id
+    WHERE post.categories = $1
+    `, [ categoryID ])
+    .catch( error => {
+      console.error( {message: "Get comments by CategoryID", arguments: arguments})
+      throw error
+    })
+  }
+
+const getCommentsByMemberID = ( memberID ) => {
+  return db.any(`
+    SELECT * FROM post
+    JOIN comment
+    ON comment.post_id = post.id
+    WHERE post.member_id = $1
+    `, [ memberID ])
+    .catch( error => {
+      console.error( {message: "Get comment by memberID", arguments: arguments})
+      throw error
+    })
+  }
+
+
 const createComment = ( post_id, member_id, description, status ) => {
   return db.query(`
     INSERT INTO
       comment (post_id, member_id, description, status )
     VALUES
-      ($1::text, $2::int, $3::text, $4::int )
+      ($1::int, $2::int, $3::text, $4::int )
     RETURNING
       *
     `,
@@ -146,50 +186,6 @@ const deleteComment = ( commentID ) =>{
       throw error
     })
 }
-
-const getComments = () => {
-  return db.any(`
-    SELECT * FROM comment
-    `, [])
-    .catch( error => {
-      console.error( {message: "Get all comments error",error, arguments: arguments})
-      throw error
-    })
-}
-
-const getCommentByID = ( commentID ) => {
-  return db.any(`
-    SELECT * FROM comment
-    WHERE id = $1
-    `, [ commentID ])
-    .catch( error => {
-      console.error( {message: "Get comment by commentID", arguments: arguments})
-      throw error
-    })
-}
-
-const getCommentsByCategoryID = ( categoryID ) => {
-  return db.any(`
-    SELECT * FROM comment
-    WHERE id = $1
-    `, [ categoryID ])
-    .catch( error => {
-      console.error( {message: "Get comments by CategoryID", arguments: arguments})
-      throw error
-    })
-  }
-
-const getCommentsByMemberID = ( memberID ) => {
-  return db.any(`
-    SELECT * FROM comment
-    WHERE id = $1
-    `, [ memberID ])
-    .catch( error => {
-      console.error( {message: "Get comment by memberID", arguments: arguments})
-      throw error
-    })
-  }
-
 const getWorkouts = () => {
   return db.any(`
     SELECT * FROM workout
@@ -213,8 +209,8 @@ const getWorkoutByID = ( workoutID ) => {
 
 const getWorkoutsByBodyParts = ( bodyParts ) => {
   return db.any(`
-    SELECT * FROM workouts
-    WHERE UPPER(body_parts) LIKE UPPER($1)
+    SELECT * FROM workout
+    WHERE body_parts=$1
     `, [ bodyParts ])
     .catch( error => {
       console.error( {message: "Get post by bodyParts", arguments: arguments})
@@ -237,16 +233,16 @@ const getWorkoutsByMemberID = ( MemberID ) => {
     })
 }
 
-const createWorkout = ( post_id, description, weight, calories, pushups, squats, pullups_front_wide, pullups_front_close, pullups_reverse_wide, pullups_reverse_close, planks, distance, body_parts, tags, workout_length, workout_image_url ) =>{
+const createWorkout = ( member_id, post_id, description, weight, calories, pushups, squats, pullups_front_wide, pullups_front_close, pullups_reverse_wide, pullups_reverse_close, planks, distance, body_parts, tags, workout_length, workout_image_url ) =>{
   return db.query(`
     INSERT INTO
-      workout (post_id, description, weight, calories, pushups, squats, pullups_front_wide, pullups_front_close, pullups_reverse_wide, pullups_reverse_close, planks, distance, body_parts, tags, workout_length, workout_image_url)
+      workout (member_id, post_id, description, weight, calories, pushups, squats, pullups_front_wide, pullups_front_close, pullups_reverse_wide, pullups_reverse_close, planks, distance, body_parts, tags, workout_length, workout_image_url)
     VALUES
-      ($1::text, $2::int, $3::text, $4::text, $5::text, $6::text, $7::text, $8::text, $9::text, $10::text, $11::text, $12::text, $13::text, $14::text, $15::text, $16::text )
+      ($1::int, $2::int, $3::text, $4::int, $5::int, $6::int, $7::int, $8::int, $9::int, $10::int, $11::int, $12::int, $13::int, $14::int, $15::text, $16::int, $17::text )
     RETURNING
       *
     `,
-    [ post_id, description, weight, calories, pushups, squats, pullups_front_wide, pullups_front_close, pullups_reverse_wide, pullups_reverse_close, planks, distance, body_parts, tags, workout_length, workout_image_url ])
+    [ member_id, post_id, description, weight, calories, pushups, squats, pullups_front_wide, pullups_front_close, pullups_reverse_wide, pullups_reverse_close, planks, distance, body_parts, tags, workout_length, workout_image_url ])
     .catch( error => {
       console.error( {message: "Cannot create workout", arguments: arguments})
       throw error
@@ -323,11 +319,11 @@ const searchWorkouts = input => {
     ON member.id = workout.member_id
     WHERE UPPER(workout.description) like UPPER($1)
     OR UPPER(member.username) like UPPER($1)
-    OR UPPER(workout.body_parts) like UPPER($1),
-    OR UPPER(workout.tags) like UPPER($1),
-    OR UPPER(workout.workout_length) like UPPER($1)`,
-    [ input ] )
-}
+    OR UPPER(workout.tags) like UPPER($1)
+    `,
+    [input ] )
+};
+
 
 module.exports = {
   getPosts,
@@ -352,5 +348,5 @@ module.exports = {
   createWorkout,
   editWorkout,
   deleteWorkout,
-  searchWorkouts
-}
+  searchWorkouts,
+};

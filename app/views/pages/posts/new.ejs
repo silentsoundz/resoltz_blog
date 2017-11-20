@@ -1,0 +1,34 @@
+<% include ../../partials/header %>
+
+	<h1>Create Post</h1>
+	<form method="POST" action="/post">
+  <label for="title">Post title</label>
+  <input type="text" name="title" class="post-title" placeholder="Enter title..."><br>
+  <label for="memberID">Member ID</label>
+  <input type="text" name="member_id" class="post-member-id" value="" readonly><br>
+	<label for="snippet">Post summary</label>
+	<input type="text" name="snippet" class="post-snippet" placeholder="Enter brief summary..."><br>
+	<label for="post_entry">Post Entry</label>
+	<textarea name="post_entry" class="post-entry" placeholder="What's on your mind..." rows="8" cols="80">
+	</textarea>
+  <label for="image_url">Image url</label>
+  <input type="url" name="image_url" class="image_url" placeholder="Paste url here"><br>
+  <label for="tags">Tags</label>
+  <input type="text" name="tags" class="tags" placeholder="enter tags separated by commas"><br>
+  <label for="status">Status</label>
+	<select name="status">
+		<option value="published">published</option>
+		<option value="unpublished">unpublished</option>
+		<option value="pending">pending</option>
+  </select><br>
+  <label for="categories">Categories</label>
+	<select name="categories">
+		<option value="health">health</option>
+		<option value="code">code</option>
+		<option value="business">business</option>
+		<option value="tech">tech</option>
+		<option value="random">random</option>
+  </select><br>
+</form>
+
+<% include ../../partials/footer %>
