@@ -34,19 +34,36 @@ const removeUser = function( id ) {
     RETURNING *`,[ id ] )
 }
 
-const findUser = function( username ){
-  return db.oneOrNone(`
-    SELECT * FROM member
+const findUsername = function (username) {
+  return db.any(
+    `
+    SELECT *
+    FROM member
     WHERE username = $1
     `,
-  [ username ] )
-  .catch( error => { console.log( error.message );
-  });
+    [username],
+  )
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
+const findEmail = function (email) {
+  return db.any(
+    `
+    SELECT * FROM member
+    WHERE email = $1
+    `,
+    [email],
+  )
+    .catch((error) => {
+      console.log(error.message);
+    });
 };
 
 module.exports = {
   createUser,
   editUser,
   removeUser,
-  findUser
+  findUsername,
+  findEmail
 };

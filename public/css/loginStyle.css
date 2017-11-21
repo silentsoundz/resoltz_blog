@@ -46,6 +46,11 @@ a:hover {
   width: 70%;
 }
 
+.auth-error-msg {
+  color: rgb(194, 103, 28);
+  font-weight: bold;
+}
+
 .sub-title{
   color: #179c77;
   font-size: 1.5em;

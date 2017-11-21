@@ -2,36 +2,62 @@
 
 <div class="login-wrapper">
 	<h1 class="title">Welcome to Euclid and Grand</h1>
-	<h1><%= errorMsg %></h1>
+	<h1 class="auth-error-msg"><%= errorMsg %></h1>
   <div class="loginForm">
 		<ul class="tab-group">
-			<li class="tab">
-				<a href="#signup">
-					Sign Up
-				</a>
-			</li>
 			<li class="tab active">
 				<a href="#login">
 					Log In
 				</a>
 			</li>
+			<li class="tab">
+				<a href="#signup">
+					Sign Up
+				</a>
+			</li>
 		</ul>
 		<div class="tab-content">
+			<div id="login">
+				<h1  class="sub-title">Welcome back!</h1>
+				<form action="/auth/login" method="POST">
+					<div class="top-row">
+						<div class="field-wrap">
+							<label for="username">Username:
+								<span class="req">*</span>
+							</label>
+							<input type="text" name="username" required="" autocomplete="off">
+						</div>
+						<div class="field-wrap">
+							<label for="email">Email:
+								<span class="req">*</span>
+							</label>
+							<input type="email" name="email" required="" autocomplete="off">
+						</div>
+						<div class="field-wrap">
+							<label for="password">Enter your password
+								<span class="req">*</span>
+							</label>
+							<input type="text" name="password" required="" autocomplete="off">
+						</div>
+						<button class="button button-block" type="submit" value="Submit">Log in</button>
+					</div>
+				</form>
+			</div>
 			<div id="signup">
 				<h1 class="sub-title">Sign up</h1>
 				<form action="/auth/signup" method="POST">
 					<div class="top-row">
 						<div class="field-wrap">
-							<label for="firstname">First name:
+							<label for="fname">First name:
 								<span class="req">*</span>
 							</label>
-							<input type="text" name="firstname" required="" autocomplete="off">
+							<input type="text" name="fname" required="" autocomplete="off">
 						</div>
 						<div class="field-wrap">
-							<label for="lastname">Last name:
+							<label for="lname">Last name:
 								<span class="req">*</span>
 							</label>
-							<input type="text" name="lastname" required="" autocomplete="off">
+							<input type="text" name="lname" required="" autocomplete="off">
 						</div>
 						<div class="field-wrap">
 							<label for="username">Username:
@@ -58,32 +84,6 @@
 							<input type="text" name="password2" required="" autocomplete="off">
 						</div>
 						<button class="button button-block" type="submit" value="Submit">Get started</button>
-					</div>
-				</form>
-			</div>
-			<div id="login">
-				<h1  class="sub-title">Welcome back!</h1>
-				<form action="/auth/login" method="POST">
-					<div class="top-row">
-						<div class="field-wrap">
-							<label for="username">Username:
-								<span class="req">*</span>
-							</label>
-							<input type="text" name="username" required="" autocomplete="off">
-						</div>
-						<div class="field-wrap">
-							<label for="email">Email:
-								<span class="req">*</span>
-							</label>
-							<input type="email" name="email" required="" autocomplete="off">
-						</div>
-						<div class="field-wrap">
-							<label for="password">Enter your password
-								<span class="req">*</span>
-							</label>
-							<input type="text" name="password" required="" autocomplete="off">
-						</div>
-						<button class="button button-block" type="submit" value="Submit">Log in</button>
 					</div>
 				</form>
 			</div>
