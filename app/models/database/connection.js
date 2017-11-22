@@ -1,7 +1,7 @@
 const pgp = require('pg-promise')();
 const config = require('../../../config/config');
 
-const db = pgp('pg://stephanimcgrath@localhost:5432/resoltz-blog');
+const db = pgp(process.env.TEST_DATABASE_URL);
 // console.log( "config:", config )
 // const db = pgp(config);
 
