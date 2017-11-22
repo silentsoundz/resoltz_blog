@@ -3,7 +3,7 @@ const result = dotenv.config();
 if (result.error) {
   throw result.error;
 }
-// console.log(result.parsed);
+//console.log(result.parsed);
 
 const express = require('express');
 const config = require('./config/config');

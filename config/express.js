@@ -1,12 +1,13 @@
 const express = require('express');
 const glob = require('glob');
-const config = require( './config' )
+const config = require('./config');
 
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const compress = require('compression');
-
+const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 
 module.exports = function (app) {
   const env = process.env.NODE_ENV || 'development';
@@ -22,6 +23,21 @@ module.exports = function (app) {
   app.use(bodyParser.urlencoded({
     extended: true,
   }));
+
+  app.use(session({
+    name: process.env.KEY,
+    store: new pgSession({
+      conString: process.env.TEST_DATABASE_URL,
+    }),
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false,
+      maxAge: 3600000,
+    },
+  }));
+
   app.use(compress());
   app.use(express.static(`${config.root}/public`));
 
@@ -31,7 +47,7 @@ module.exports = function (app) {
   });
 
   app.use((req, res, next) => {
-    let err = new Error('Not Found');
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
   });
