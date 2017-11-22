@@ -8,9 +8,12 @@ router.get('/', (request, response) => {
 });
 
 router.post('/signup', (request, response) => {
+  const member = request.body;
+  request.session.member = member;
+  console.log('this is the request', request.session);
   const {
     fname, lname, username, email, password, password2,
-  } = request.body;
+  } = member;
   if (password !== password2) {
     response.status(200).render('pages/member/authentication', {
       errorMsg: 'Your passwords do not match',
@@ -38,6 +41,11 @@ router.post('/signup', (request, response) => {
                   .then((hashedPassword) => {
                     db.createUser(fname, lname, username, email, hashedPassword)
                       .then((newUser) => {
+                        member.fname = fname;
+                        member.lname = lname;
+                        member.username = username;
+                        member.email = email;
+                        member.password = password;
                         response.status(200).redirect('/');
                       });
                   });
@@ -49,7 +57,9 @@ router.post('/signup', (request, response) => {
 });
 
 router.post('/login', (request, response) => {
-  const { username, email, password } = request.body;
+  const member = request.body;
+  request.session.member = member;
+  const { username, email, password } = member;
   Promise.all([db.findUsername(username), db.findEmail(email)])
     .then((rows) => {
       const existingUsername = rows[0];
@@ -66,6 +76,10 @@ router.post('/login', (request, response) => {
                 errorMsg: 'Please check your username or password',
               });
             } else {
+              member.username = username;
+              member.email = email;
+              member.password = password;
+              console.log('this is the member', member);
               // request.session.member = existingMember;
               response.status(200).redirect('/');
             }
