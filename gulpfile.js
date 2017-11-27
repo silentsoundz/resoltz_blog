@@ -1,18 +1,18 @@
-var gulp = require('gulp'),
+let gulp = require('gulp'),
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
   livereload = require('gulp-livereload');
 
 
-gulp.task('develop', function () {
+gulp.task('develop', () => {
   livereload.listen();
   nodemon({
     script: 'app.js',
     ext: 'js coffee jade',
-    stdout: false
+    stdout: false,
   }).on('readable', function () {
-    this.stdout.on('data', function (chunk) {
-      if(/^Express server listening on port/.test(chunk)){
+    this.stdout.on('data', (chunk) => {
+      if (/^Express server listening on port/.test(chunk)) {
         livereload.changed(__dirname);
       }
     });
@@ -22,5 +22,5 @@ gulp.task('develop', function () {
 });
 
 gulp.task('default', [
-  'develop'
+  'develop',
 ]);

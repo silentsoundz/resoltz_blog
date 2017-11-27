@@ -57,9 +57,7 @@ router.post('/signup', (request, response) => {
 });
 
 router.post('/login', (request, response) => {
-  const member = request.body;
-  request.session.member = member;
-  const { username, email, password } = member;
+  const { username, email, password } = request.body;
   Promise.all([db.findUsername(username), db.findEmail(email)])
     .then((rows) => {
       const existingUsername = rows[0];
@@ -76,11 +74,15 @@ router.post('/login', (request, response) => {
                 errorMsg: 'Please check your username or password',
               });
             } else {
-              member.username = username;
-              member.email = email;
-              member.password = password;
-              console.log('this is the member', member);
-              // request.session.member = existingMember;
+              const member = {
+                id: existingUsername[0].id,
+                username: existingUsername[0].username,
+                email: existingUsername[0].email,
+                pic_url: existingUsername[0].pic_url,
+                date_joined: existingUsername[0].date_joined,
+              };
+              request.session.member = member;
+              console.log('this is the member', request.session);
               response.status(200).redirect('/');
             }
           });

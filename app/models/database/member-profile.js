@@ -24,15 +24,17 @@ const editUser = function (member) {
       SET fname=$2 , lname=$3, username=$4, email=$5, password=$6
     WHERE id=$1
     `,
-    [member.id, member.fname, member.lname, member.username, member.email, member.password ] )
-    .catch(error => { console.log( error.message );
+    [member.id, member.fname, member.lname, member.username, member.email, member.password],
+  )
+    .catch((error) => {
+      console.log(error.message);
     });
 };
 
-const removeUser = function( id ) {
+const removeUser = function (id) {
   return db.none(`DELETE FROM member WHERE id=$1
-    RETURNING *`,[ id ] )
-}
+    RETURNING *`, [id]);
+};
 
 const findUsername = function (username) {
   return db.any(
@@ -65,5 +67,5 @@ module.exports = {
   editUser,
   removeUser,
   findUsername,
-  findEmail
+  findEmail,
 };
