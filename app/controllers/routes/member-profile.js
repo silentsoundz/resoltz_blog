@@ -78,8 +78,6 @@ router.post('/login', (request, response) => {
             } else {
               const member = {
                 id: existingUsername[0].id,
-                fname: existingUsername[0].fname,
-                lname: existingUsername[0].lname,
                 username: existingUsername[0].username,
                 email: existingUsername[0].email,
                 pic_url: existingUsername[0].pic_url,
@@ -87,7 +85,6 @@ router.post('/login', (request, response) => {
               };
               request.session.member = member;
               console.log('this is the member', request.session);
-              // request.session.member = existingMember;
               response.status(200).redirect('/');
             }
           });

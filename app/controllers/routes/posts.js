@@ -3,7 +3,6 @@ const db = require('../../models/posts');
 // const { isLoggedIn } = require('../utilities/middlewares');
 
 router.get('/', (request, response) => {
-  console.log( "homepage:", request.session )
   db.getPosts()
     .then((posts, error) => {
       console.log(posts);
