@@ -3,6 +3,7 @@ const db = require('../../models/posts');
 // const { isLoggedIn } = require('../utilities/middlewares');
 
 router.get('/', (request, response) => {
+  console.log( "homepage:", request.session )
   db.getPosts()
     .then((posts, error) => {
       console.log(posts);
@@ -15,8 +16,9 @@ router.get('/', (request, response) => {
 });
 
 router.get('/post/new', (request, response) => {
-
-  response.status(200).render('pages/posts/new');
+  const { member } = request.session;
+  console.log('======> create post', request.session);
+  response.status(200).render('pages/posts/new', { member });
 });
 
 router.post('/post', (request, response) => {

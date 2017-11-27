@@ -8,12 +8,9 @@ router.get('/', (request, response) => {
 });
 
 router.post('/signup', (request, response) => {
-  const member = request.body;
-  request.session.member = member;
-  console.log('this is the request', request.session);
   const {
     fname, lname, username, email, password, password2,
-  } = member;
+  } = request.body;
   if (password !== password2) {
     response.status(200).render('pages/member/authentication', {
       errorMsg: 'Your passwords do not match',
@@ -41,11 +38,16 @@ router.post('/signup', (request, response) => {
                   .then((hashedPassword) => {
                     db.createUser(fname, lname, username, email, hashedPassword)
                       .then((newUser) => {
-                        member.fname = fname;
-                        member.lname = lname;
-                        member.username = username;
-                        member.email = email;
-                        member.password = password;
+                        const member = {
+                        id:newUser[0].id,
+                        fname:newUser[0].fname,
+                        lname:newUser[0].lname,
+                        username:newUser[0].username,
+                        email:newUser[0].email,
+                        pic_url:newUser[0].pic_url,
+                        date_joined:newUser[0].date_joined,
+                      };
+                      request.session.member = member;
                         response.status(200).redirect('/');
                       });
                   });
@@ -57,9 +59,7 @@ router.post('/signup', (request, response) => {
 });
 
 router.post('/login', (request, response) => {
-  const member = request.body;
-  request.session.member = member;
-  const { username, email, password } = member;
+  const { username, email, password } = request.body;
   Promise.all([db.findUsername(username), db.findEmail(email)])
     .then((rows) => {
       const existingUsername = rows[0];
@@ -76,10 +76,17 @@ router.post('/login', (request, response) => {
                 errorMsg: 'Please check your username or password',
               });
             } else {
-              member.username = username;
-              member.email = email;
-              member.password = password;
-              console.log('this is the member', member);
+              const member = {
+                id: existingUsername[0].id,
+                fname: existingUsername[0].fname,
+                lname: existingUsername[0].lname,
+                username: existingUsername[0].username,
+                email: existingUsername[0].email,
+                pic_url: existingUsername[0].pic_url,
+                date_joined: existingUsername[0].date_joined,
+              };
+              request.session.member = member;
+              console.log('this is the member', request.session);
               // request.session.member = existingMember;
               response.status(200).redirect('/');
             }
