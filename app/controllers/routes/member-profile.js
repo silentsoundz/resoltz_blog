@@ -39,15 +39,15 @@ router.post('/signup', (request, response) => {
                     db.createUser(fname, lname, username, email, hashedPassword)
                       .then((newUser) => {
                         const member = {
-                        id:newUser[0].id,
-                        fname:newUser[0].fname,
-                        lname:newUser[0].lname,
-                        username:newUser[0].username,
-                        email:newUser[0].email,
-                        pic_url:newUser[0].pic_url,
-                        date_joined:newUser[0].date_joined,
-                      };
-                      request.session.member = member;
+                          id: newUser[0].id,
+                          fname: newUser[0].fname,
+                          lname: newUser[0].lname,
+                          username: newUser[0].username,
+                          email: newUser[0].email,
+                          pic_url: newUser[0].pic_url,
+                          date_joined: newUser[0].date_joined,
+                        };
+                        request.session.member = member;
                         response.status(200).redirect('/');
                       });
                   });
